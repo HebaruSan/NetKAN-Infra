@@ -44,7 +44,7 @@ class ModStatus(Model):
                 continue
             attributes[key] = getattr(self, key, None)
             if isinstance(attributes[key], datetime):
-                attributes[key] = attributes[key].isoformat()
+                attributes[key] = attributes[key].astimezone(timezone.utc).isoformat()
             elif isinstance(attributes[key], MapAttribute):
                 attributes[key] = attributes[key].as_dict()
         return attributes
